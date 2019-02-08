@@ -7,14 +7,13 @@ class TabLink {
     // Get the custom data attribute on the Link
     //dataset is the attribute on the HTML "data-something = something"
     this.data = this.link.dataset.tab;
-    console.log(this.data);
     
     // Using the custom data attribute get the associated Item element
     //selecting each tab using the [data-somthing] for specificty
-    this.itemElement = document.querySelector(`.tabs-link[data-tab='${this.data}']`);
+    this.itemElement = document.querySelector(`.tabs-item[data-tab='${this.data}']`);
     
     // Using the Item element, create a new instance of the TabItem class
-    this.tabItem = new TabItem(this.tabItem);
+    this.itemElement = new TabItem(this.itemElement);
     
     // Add a click event listener on this instance, calling the select method on click
     this.link.addEventListener('click', () => this.select());
@@ -23,16 +22,15 @@ class TabLink {
   select() {
     // Get all of the elements with the tabs-link class
     const links = document.querySelectorAll('.tabs-link');
-    console.log(`you clicked this`)
     // Using a loop or the forEach method remove the 'tabs-link-selected' class from all of the links
     //This removed 
-    Array.from(links).forEach(() => links.classList.remove('tabs-link-selected'));
+    Array.from(links).forEach((link) => link.classList.remove('tabs-link-selected'));
 
     // Add a class named "tabs-link-selected" to this link
-    this.element.classList.add('tabs-link-selected');
-    
+    this.link.classList.add('tabs-link-selected');
+
     // Call the select method on the item associated with this link
-    this.TabItem.select();
+    this.itemElement.showContent();
   }
 }
 
@@ -42,14 +40,14 @@ class TabItem {
     this.element = element;
   }
 
-  select() {
+  showContent() {
     // Select all ".tabs-item" elements from the DOM
-    const items = document.querySelectorAll('')
+    const items = document.querySelectorAll('.tabs-item');
 
     // Remove the class "tabs-item-selected" from each element
-    
+    Array.from(items).forEach((item) => item.classList.remove('tabs-item-selected'))
     // Add a class named "tabs-item-selected" to this element
-    //this.element;
+    this.element.classList.add('tabs-item-selected');
   }
 }
 
